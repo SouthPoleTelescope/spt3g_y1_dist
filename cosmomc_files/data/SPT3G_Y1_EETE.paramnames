@@ -1,0 +1,26 @@
+Kappa					\kappa
+
+Dl_Poisson_90x90			D_{3000}^{PS;\rm{90x90}}
+Dl_Poisson_90x150                       D_{3000}^{PS;\rm{90x150}}
+Dl_Poisson_90x220                       D_{3000}^{PS;\rm{90x220}}
+Dl_Poisson_150x150                      D_{3000}^{PS;\rm{150x150}}
+Dl_Poisson_150x220                      D_{3000}^{PS;\rm{150x220}}
+Dl_Poisson_220x220                      D_{3000}^{PS;\rm{220x220}}
+
+TDust					T_{\rm{dust}}
+ADust_TE_150				A_{\rm{dust}}^{TE}
+BetaDust_TE				\beta_{\rm{dust}}^{TE}
+AlphaDust_TE				\alpha_{\rm{dust}}^{TE}
+ADust_EE_150				A_{\rm{dust}}^{EE}
+BetaDust_EE				\beta_{\rm{dust}}^{EE}
+AlphaDust_EE				\alpha_{\rm{dust}}^{EE}
+
+MapTcal90                               T_{\rm{cal}}^{\rm{90}}
+MapTcal150                              T_{\rm{cal}}^{\rm{150}}
+MapTcal220                              T_{\rm{cal}}^{\rm{220}}
+
+MapPcal90                               P_{\rm{cal}}^{\rm{90}}
+MapPcal150                              P_{\rm{cal}}^{\rm{150}}
+MapPcal220                              P_{\rm{cal}}^{\rm{220}}
+
+
