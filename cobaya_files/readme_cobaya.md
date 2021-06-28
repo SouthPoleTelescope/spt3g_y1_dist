@@ -27,7 +27,7 @@ Those steps are performed automatically by the install script.
 - If your cobaya installation does not contains a version>=15.0 of `clik`(this is the case if you have installed the cobaya external default cosmology files with a `cobaya-install cosmo -m /path/to/cobaya/packages` for cobaya 3.1), change the name of the directory `path/to/cobaya/packages/code/planck/` to  `path/to/cobaya/packages/code/planck_old/` 
 - Create a link to your `clik` library installation (downloaded from [https://github.com/benabed/clik](https://github.com/benabed/clik)) to `path/to/cobaya/packages/code/planck`.
 
-	$> ln -s /path/to/clik path/to/cobaya/packages/code/planck
+		$> ln -s /path/to/clik path/to/cobaya/packages/code/planck
 	
 - Check whether astropy or pyfits is installed and accessible to cobaya, if not install astropy (`pip3 install astropy`)
 

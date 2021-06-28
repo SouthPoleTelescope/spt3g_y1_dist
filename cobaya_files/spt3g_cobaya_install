@@ -203,10 +203,11 @@ logtest(R,"Create exmaple parameter file params_SPT3GY1_class_base.yaml",sys.arg
 
 print("\n\n")
 if bew:
-  print(colors["BOLD"] + colors["BLUE"] + "Good to go !"+colors["NORMAL"])
+  print(colors["BOLD"] + colors["BLUE"] + "Good to go ! Test with "+colors["NORMAL"])
 else:
   print(colors["BOLD"] + colors["BLUE"] + "You need to install astropy or pyfits (see above) before testing with"+colors["NORMAL"])
-print("test with cobaya-run params_SPT3GY1_class_base.yaml")
+print("      COBAYA_PACKAGES_PATH=%s cobaya-run %s/params_SPT3GY1_class_base.yaml"%(sys.argv[1],os.getcwd()))
+print("")
 sys.exit(0)
 
 
