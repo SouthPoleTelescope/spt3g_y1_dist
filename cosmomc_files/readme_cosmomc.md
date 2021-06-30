@@ -11,5 +11,4 @@ Modify `batch3/SPT3G_Y1_EETE_clik.ini` so that the parameter `clik_data_SPT` poi
 
 ----------
 24/06/2021
-S. Galli & K. Benabed 
-
+K. Benabed & S. Galli

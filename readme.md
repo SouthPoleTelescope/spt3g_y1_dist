@@ -25,5 +25,4 @@ The `SPT3G_Y1_EETE.clik` was produced from the cosmomc specific SPT3G code and d
  
 ----------
 24/06/2021
-S. Galli & K. Benabed 
-
+K. Benabed & S. Galli
