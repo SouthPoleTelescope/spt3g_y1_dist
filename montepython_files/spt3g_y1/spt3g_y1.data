@@ -1,0 +1,25 @@
+# This likelihood corresponds to the spt3g_Y1_EETE data (high l temperature and polarisation)
+
+# Grab the clik version of the spt3g_y1 likelihood:
+spt3g_y1.path_clik = os.path.join(data.path['spt3g_y1'], 'spt3g_Y1_EETE.clik')
+
+
+spt3g_y1.Dl_Poisson_90x90_prior_center = 0.040469 
+spt3g_y1.Dl_Poisson_90x90_prior_variance = 0.012141
+spt3g_y1.Dl_Poisson_90x150_prior_center = 0.018048 
+spt3g_y1.Dl_Poisson_90x150_prior_variance = 0.005414
+spt3g_y1.Dl_Poisson_90x220_prior_center = 0.015719 
+spt3g_y1.Dl_Poisson_90x220_prior_variance = 0.004716
+spt3g_y1.Dl_Poisson_150x150_prior_center = 0.011495 
+spt3g_y1.Dl_Poisson_150x150_prior_variance = 0.003448
+spt3g_y1.Dl_Poisson_150x220_prior_center = 0.018962 
+spt3g_y1.Dl_Poisson_150x220_prior_variance = 0.005689
+spt3g_y1.Dl_Poisson_220x220_prior_center = 0.047557 
+spt3g_y1.Dl_Poisson_220x220_prior_variance = 0.014267
+spt3g_y1.ADust_EE_150_prior_center = 0.095 
+spt3g_y1.ADust_EE_150_prior_variance = 0.012
+spt3g_y1.ADust_TE_150_prior_center = 0.184 
+spt3g_y1.ADust_TE_150_prior_variance = 0.072
+
+
+
