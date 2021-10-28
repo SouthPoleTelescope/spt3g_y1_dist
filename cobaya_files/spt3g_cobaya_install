@@ -55,16 +55,16 @@ else:
     pass
   logtest(R,"Create "+sys.argv[1]+"/data/spt_data",yellow=e)
 
-logtest(osp.lexists("../spt3g_Y1_EETE.clik"),"Check for availibility of the data file",yellow="Not found",extrayellow="Check your spt3g release. Cannot find spt3g_Y1_EETE.clik in the root directory")
+logtest(osp.lexists("../spt3g_Y1_v3_EETE.clik"),"Check for availibility of the data file",yellow="Not found",extrayellow="Check your spt3g release. Cannot find spt3g_Y1_v3_EETE.clik in the root directory")
 
-if osp.lexists(sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik"):
+if osp.lexists(sys.argv[1]+"/data/spt_data/spt3g_Y1_v3_EETE.clik"):
   R = True
   e = ""
   try:
-    if not osp.islink(sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik"):
-      shutil.rmtree(sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik")
+    if not osp.islink(sys.argv[1]+"/data/spt_data/spt3g_Y1_v3_EETE.clik"):
+      shutil.rmtree(sys.argv[1]+"/data/spt_data/spt3g_Y1_v3_EETE.clik")
     else:
-      os.unlink(sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik")
+      os.unlink(sys.argv[1]+"/data/spt_data/spt3g_Y1_v3_EETE.clik")
   except Exception as err:
     R = False
     e=str(err).decode("utf-8")
@@ -73,11 +73,11 @@ if osp.lexists(sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik"):
 R = True
 e = ""
 try:
-  shutil.copytree("../spt3g_Y1_EETE.clik",sys.argv[1]+"/data/spt_data/spt3g_Y1_EETE.clik")
+  shutil.copytree("../spt3g_Y1_v3_EETE.clik",sys.argv[1]+"/data/spt_data/spt3g_Y1_v3_EETE.clik")
 except Exception as err:
   R = False
   e=str(err).decode("utf-8")
-logtest(R,"Copy spt3g_Y1_EETE.clik in "+sys.argv[1]+"/data/spt_data/",yellow=e)
+logtest(R,"Copy spt3g_Y1_v3_EETE.clik in "+sys.argv[1]+"/data/spt_data/",yellow=e)
 
 if not logtest(osp.isdir(sys.argv[1]+"/data"),"Check cobaya package path contains code","ok","code not found, create it", fail=False):
   R = True
@@ -126,7 +126,7 @@ else:
   logtest(osp.lexists(sys.argv[2]),"Check for availibility of clik install",yellow="not found, %s does not exists"%(sys.argv[2]))
   clikroot=sys.argv[2]
 
-shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_EETE.clik"%(clikroot,sys.argv[1])
+shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,sys.argv[1])
 R=True
 e=""
 try:
@@ -178,7 +178,7 @@ if instclik:
     e=str(err).decode("utf-8")
   logtest(R,"Create symlink ",sys.argv[1]+"/code/planck"+" -> "+sys.argv[2],yellow=e)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_EETE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
+  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
   R=True
   e=""
   try:

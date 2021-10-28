@@ -21,7 +21,7 @@ You should now be able to use the spt3g_y1 likelihood. Look at `params_SPT3GY1_c
 Those steps are performed automatically by the install script.
 
 - Create a `spt_data` directory in `/path/to/cobaya/packages/data`
-- Move the `SPT3G_Y1_EETE.clik` to 
+- Move the `SPT3G_Y1_v3_EETE.clik` to 
 - Create a `spt_data` directory in `/path/to/cobaya/packages/data/spt_data`
 - Copy the `SPT3G_Y1` directory to `/path/to/cobaya/packages/code`
 - If your cobaya installation does not contains a version>=15.0 of `clik`(this is the case if you have installed the cobaya external default cosmology files with a `cobaya-install cosmo -m /path/to/cobaya/packages` for cobaya 3.1), change the name of the directory `path/to/cobaya/packages/code/planck/` to  `path/to/cobaya/packages/code/planck_old/` 

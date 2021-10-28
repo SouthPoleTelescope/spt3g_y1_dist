@@ -2,7 +2,7 @@
 # SPT-3G 1yr likelihood TEEE
 
 path:
-clik_file: spt3g_Y1_EETE.clik
+clik_file: spt3g_Y1_v3_EETE.clik
 speed: 7
 
 params: !defaults [params_TEEE]

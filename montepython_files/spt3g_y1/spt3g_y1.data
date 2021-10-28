@@ -1,7 +1,7 @@
-# This likelihood corresponds to the spt3g_Y1_EETE data (high l temperature and polarisation)
+# This likelihood corresponds to the spt3g_Y1_v3_EETE data (high l temperature and polarisation)
 
 # Grab the clik version of the spt3g_y1 likelihood:
-spt3g_y1.path_clik = os.path.join(data.path['spt3g_y1'], 'spt3g_Y1_EETE.clik')
+spt3g_y1.path_clik = os.path.join(data.path['spt3g_y1'], 'spt3g_Y1_v3_EETE.clik')
 
 
 spt3g_y1.Dl_Poisson_90x90_prior_center = 0.040469 

@@ -1,6 +1,6 @@
 # SPT3G Y1 release in `clik` format
 
-This package contains the SPT3G Y1 likelihood code and data encapsulated in `clik` format `SPT3G_Y1_EETE.clik` allowing it to be called from any sampled that is already linked with the `clik` library in order to run the Planck likelihoods.
+This package contains the SPT3G Y1 likelihood code and data encapsulated in `clik` format `SPT3G_Y1_v3_EETE.clik` allowing it to be called from any sampled that is already linked with the `clik` library in order to run the Planck likelihoods.
 
 The package contains instruction for usage in `cosmomc` and `cobaya`.
 
@@ -16,9 +16,9 @@ _Nota:_ running `clik_print` or `clik_example_C` with a clikfile will display th
 
 **Production notes**
 
-The `SPT3G_Y1_EETE.clik` was produced from the cosmomc specific SPT3G code and data at [https://pole.uchicago.edu/public/data/dutcher21](https://pole.uchicago.edu/public/data/dutcher21/), and using the `prepare_spt3g` tool in the `clik` package with the following parameters 
+The `SPT3G_Y1_v3_EETE.clik` was produced from the cosmomc specific SPT3G code and data at [https://pole.uchicago.edu/public/data/dutcher21](https://pole.uchicago.edu/public/data/dutcher21/), and using the `prepare_spt3g` tool in the `clik` package with the following parameters 
 
-	res_object = spt3g_Y1_EETE.clik
+	res_object = spt3g_Y1_v3_EETE.clik
 	data_path = /path/to/spt3g_package/data/SPT3G_Y1_EETE/
 	dataset_path = /path/to/spt3g_package/data/	SPT3G_Y1_EETE/SPT3G_Y1_EETE.dataset
 	ini_path = /path/to/spt3g_package/batch3/SPT3G_Y1_EETE.ini 
