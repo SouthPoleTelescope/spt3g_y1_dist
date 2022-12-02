@@ -1,0 +1,27 @@
+lkl_type str spt3g_ttteee_2018
+unit int 1
+lmax int 3200
+lmin int 0
+version int 1
+SPT3G_2018_TTTEEE_N_freq_0 int 3
+SPT3G_2018_TTTEEE_N_b_0_TT int 44
+SPT3G_2018_TTTEEE_N_b_0_TE int 44
+SPT3G_2018_TTTEEE_N_b_0_EE int 44
+SPT3G_2018_TTTEEE_N_b_0_total int 792
+SPT3G_2018_TTTEEE_N_s_0 int 18
+SPT3G_2018_TTTEEE_window_l_min int 1
+SPT3G_2018_TTTEEE_window_l_max int 3200
+SPT3G_2018_TTTEEE_aberration_coefficient float -0.0004826
+SPT3G_2018_TTTEEE_spectra_to_fit_bin_min str 10 1 1 10 1 1 10 1 1 10 1 1 15 1 1 15 1 1
+SPT3G_2018_TTTEEE_central_frequency_file_order str 90 150 220
+SPT3G_2018_TTTEEE_late_crop int 0
+SPT3G_2018_TTTEEE_cov_eval_cut_threshold float 0.2
+SPT3G_2018_TTTEEE_cov_eval_replacement float 1000
+SPT3G_2018_TTTEEE_beam_covariance_scale float 1
+SPT3G_2018_TTTEEE_galdust_T float 19.6
+SPT3G_2018_TTTEEE_galdust_nu0 float 150
+SPT3G_2018_TTTEEE_CIB_T float 25
+SPT3G_2018_TTTEEE_CIB_nu0 float 150
+SPT3G_2018_TTTEEE_tSZ_nu0 float 143
+SPT3G_2018_TTTEEE_tSZ_cosmology_scaling int 0
+SPT3G_2018_TTTEEE_kSZ_cosmology_scaling int 0
