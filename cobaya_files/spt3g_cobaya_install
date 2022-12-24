@@ -22,7 +22,7 @@ def logtest(test,white, green="ok",yellow="failure",extrayellow="",fail=True, sz
     sys.exit(-1)
   return False
 
-trymkdir(drpath):
+def trymkdir(drpath):
   R = True
   e = ""
   try:
@@ -33,17 +33,17 @@ trymkdir(drpath):
     pass
   logtest(R,"Create "+drpath,yellow=e)
 
-install_clikfile(clokfile,):
+def install_clikfile(clikfile):
   logtest(osp.lexists("../"+clikfile),"Check for availibility of the data file",yellow="Not found",extrayellow="Check your spt3g release. Cannot find %s in the root directory"%clikfile)
 
   if osp.lexists(sys.argv[1]+"/data/spt_data/"+clikfile):
     R = True
     e = ""
     try:
-      if not osp.islink(sys.argv[1]+"/data/spt_data/"clikfile):
-        shutil.rmtree(sys.argv[1]+"/data/spt_data/"clikfile)
+      if not osp.islink(sys.argv[1]+"/data/spt_data/"+clikfile):
+        shutil.rmtree(sys.argv[1]+"/data/spt_data/"+clikfile)
       else:
-        os.unlink(sys.argv[1]+"/data/spt_data/"clikfile)
+        os.unlink(sys.argv[1]+"/data/spt_data/"+clikfile)
     except Exception as err:
       R = False
       e=str(err).decode("utf-8")
@@ -77,7 +77,7 @@ elif  (osp.lexists(sys.argv[1]+"/data/spt_data")) and (osp.isfile(sys.argv[1]+"/
 else:
   trymkdir(sys.argv[1]+"/data/spt_data")
 
-install_clikfile("spt3g_Y1_v3_EETE.clik")
+#install_clikfile("spt3g_Y1_v3_EETE.clik")
 install_clikfile("spt3g_Y1_v1_TTTEEE.clik")
 
 if not logtest(osp.isdir(sys.argv[1]+"/data"),"Check cobaya package path contains code","ok","code not found, create it", fail=False):
@@ -120,16 +120,16 @@ else:
   logtest(osp.lexists(sys.argv[2]),"Check for availibility of clik install",yellow="not found, %s does not exists"%(sys.argv[2]))
   clikroot=sys.argv[2]
 
-shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,sys.argv[1])
-R=True
-e=""
-try:
-  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-except Exception as err:
-  R=False
-  e=str(err).decode("utf-8")
-
-logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
+#shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,sys.argv[1])
+#R=True
+#e=""
+#try:
+#  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
+#except Exception as err:
+#  R=False
+#  e=str(err).decode("utf-8")
+#
+#logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
 
 shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,sys.argv[1])
 R=True
@@ -177,11 +177,12 @@ if instclik:
   R = True
   e = ""
   try:
-    os.symlink(sys.argv[2],sys.argv[1]+"/code/planck")
+    os.mkdir(sys.argv[1]+"/code/planck")
+    os.symlink(sys.argv[2],sys.argv[1]+"/code/planck/plc-3.1")
   except Exception as err:
     R = False
     e=str(err).decode("utf-8")
-  logtest(R,"Create symlink ",sys.argv[1]+"/code/planck"+" -> "+sys.argv[2],yellow=e)
+  logtest(R,"Create symlink ",sys.argv[1]+"/code/planck/plc-3.1"+" -> "+sys.argv[2],yellow=e)
 
   shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
   R=True
