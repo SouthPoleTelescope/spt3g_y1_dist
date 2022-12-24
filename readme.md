@@ -4,7 +4,7 @@ This package contains the SPT3G Y1 likelihood code and data encapsulated in `cli
 
 The package contains instruction for usage in `cosmomc`, `cobaya` and `montepython`.
 
-** DEC 2022, only `cobaya` version available. **
+** DEC 2022, only `cobaya` version available.  This is in dev. Not ready for production **
 
 **Prerequisite**:
 Download and install `clik` _(version >= 15.0)_ from [https://github.com/benabed/clik](https://github.com/benabed/clik)  or make sure that your cosmo sampler installation already includes a `clik` at version >= 15.2. 
