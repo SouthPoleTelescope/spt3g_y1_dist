@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+
+import sys
+import os.path as osp
+import shutil
+import os
+import subprocess
+
+colors={'BOLD':'\x1b[01;1m','RED':'\x1b[01;31m','GREEN':'\x1b[32m','YELLOW':'\x1b[33m','PINK':'\x1b[35m','BLUE':'\x1b[01;34m','CYAN':'\x1b[36m','GREY':'\x1b[37m','NORMAL':'\x1b[0m'}
+
+def logtest(test,white, green="ok",yellow="failure",extrayellow="",fail=True, szwhite=50):
+  if test:
+    print(white+" "*max(1,szwhite-len(white))+":"+colors["GREEN"]+" ",green+colors["NORMAL"])
+    return True
+  if fail:
+    print(white+" "*max(1,szwhite-len(white))+":"+colors["RED"]+" ",yellow+colors["NORMAL"])
+  else:
+    print(white+" "*max(1,szwhite-len(white))+":"+colors["YELLOW"]+" ",yellow+colors["NORMAL"])
+  if extrayellow:
+    print(colors["PINK"]+"%s"%str(extrayellow)+colors["NORMAL"])
+  if fail:
+    sys.exit(-1)
+  return False
+
+def trymkdir(drpath):
+  R = True
+  e = ""
+  try:
+    os.mkdir(drpath)
+  except Exception as err:
+    R = False
+    e=str(err).decode("utf-8")
+    pass
+  logtest(R,"Create "+drpath,yellow=e)
+
+def install_clikfile(clikfile):
+  logtest(osp.lexists("../"+clikfile),"Check for availibility of the data file",yellow="Not found",extrayellow="Check your spt3g release. Cannot find %s in the root directory"%clikfile)
+
+  if osp.lexists(sys.argv[1]+"/data/spt_data/"+clikfile):
+    R = True
+    e = ""
+    try:
+      if not osp.islink(sys.argv[1]+"/data/spt_data/"+clikfile):
+        shutil.rmtree(sys.argv[1]+"/data/spt_data/"+clikfile)
+      else:
+        os.unlink(sys.argv[1]+"/data/spt_data/"+clikfile)
+    except Exception as err:
+      R = False
+      e=str(err).decode("utf-8")
+    logtest(R,"Spt3g data already in cobaya package, erase it",yellow=e)
+  
+  R = True
+  e = ""
+  try:
+    shutil.copytree("../"+clikfile,sys.argv[1]+"/data/spt_data/"+clikfile)
+  except Exception as err:
+    R = False
+    e=str(err).decode("utf-8")
+  logtest(R,"Copy "+clikfile+" in "+sys.argv[1]+"/data/spt_data/",yellow=e)
+  
+  
+  if len(sys.argv) not in [2,3]:
+    print ("usage: %s /path/to/montepython [/path/to/clik]")
+    sys.exit(-1)
+  print(colors["BOLD"] + colors["BLUE"] + "Installing spt3g code and data in cobaya\n\n"+colors["NORMAL"])
+
+
+# check for cobaya package dir
+logtest(osp.isdir(sys.argv[1]),"Check montepython path",sys.argv[1],sys.argv[1]+" does not exists")
+if not logtest(osp.isdir(sys.argv[1]+"/data"),"Check montepython path contains data","ok","data not found, create it", fail=False):
+  trymkdir(sys.argv[1]+"/data")
+
+if (osp.lexists(sys.argv[1]+"/data/spt_data")) and (osp.isdir(sys.argv[1]+"/data/spt_data")):
+  logtest(True,sys.argv[1]+"/data/spt_data", "already exists")
+elif  (osp.lexists(sys.argv[1]+"/data/spt_data")) and (osp.isfile(sys.argv[1]+"/data/spt_data")):
+  logtest(False,sys.argv[1]+"/data/spt_data", "is a file","Check your montepython package directory and manually remove %s"%(sys.argv[1]+"/data/spt_data"))
+else:
+  trymkdir(sys.argv[1]+"/data/spt_data")
+
+#install_clikfile("spt3g_Y1_v3_EETE.clik")
+install_clikfile("spt3g_Y1_v1_TTTEEE.clik")
+
+if not logtest(osp.isdir(sys.argv[1]+"/montepython/likelihoods"),"Check montepython contains likelihoods","ok","code not found, create it", fail=False):
+  trymkdir(sys.argv[1]+"/montepython/likelihoods")
+
+logtest(osp.lexists("spt3g_y1"),"Check for availibility of the montepython metadata files",yellow="Not found",extrayellow="Check your spt3g release. Cannot find spt3g_y1 directory in the montepython_files directory")
+
+if osp.lexists(sys.argv[1]+"/montepython/likelihoods/spt3g_y1"):
+  R = True
+  e = ""
+  try:
+    if not osp.islink(sys.argv[1]+"/montepython/likelihoods/spt3g_y1"):
+      shutil.rmtree(sys.argv[1]+"/montepython/likelihoods/spt3g_y1")
+    else:
+      os.unlink(sys.argv[1]+"/montepython/likelihoods/spt3g_y1")
+  except Exception as err:
+    R = False
+    e=str(err).decode("utf-8")
+  logtest(R,"Spt3g code already in montepython, erase it",yellow=e)
+
+R = True
+e = ""
+try:
+  shutil.copytree("spt3g_y1",sys.argv[1]+"/montepython/likelihoods/spt3g_y1")
+except Exception as err:
+  R = False
+  e=str(err).decode("utf-8")
+logtest(R,"Copy spt3g metadata montepython files in "+sys.argv[1]+"/montepython/likelihoods/spt3g_y1",yellow=e)
+
+instclik = logtest(len(sys.argv)==3,"Use clik from",sys.argv[-1],"default montepython installation",fail=False)
+if not instclik:
+  logtest(osp.lexists(sys.argv[1]+"/default.conf"),"Check montepython contains a default.conf file","yes","no","Provide the path to a clik installation (version>=16.0)")
+  clikroot = ""
+  mtpth = sys.argv[1]
+  with open(mtpth+"/default.conf") as f:
+    for l in f:
+      if l.strip().startswith("path['clik']") or l.strip().startswith("path[\"clik\"]"):
+        pthline = l.strip().split("=")[1]
+        lcl={"root":mtpth}
+        glb={}
+        exec("pth="+pthline,glb,lcl)
+        clikroot = lcl["pth"] 
+        break
+  logtest(clikroot,"check for path to installed clik in default.conf file","yes","not found","Provide the path to a clik installation (version>=16.0)")
+  logtest(osp.lexists(clikroot),"Check for availibility of clik in "%clikroot,"yes","not found","Provide the path to a clik installation (version>=16.0)")
+else:
+  logtest(osp.lexists(sys.argv[2]),"Check for availibility of clik install",yellow="not found, %s does not exists"%(sys.argv[2]))
+  clikroot=sys.argv[2]
+
+logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
+
+if instclik:
+  logtest(osp.lexists(sys.argv[1]+"/default.conf"),"Check montepython contains a default.conf file","yes","no","Provide the path to a clik installation (version>=16.0)")
+  clikroot = ""
+  mtpth = sys.argv[1]
+  res = ""
+  oko = False
+  with open(mtpth+"/default.conf") as f:
+    for l in f:
+      if l.strip().startswith("path['clik']") or l.strip().startswith("path[\"clik\"]"):
+        res += "#comented by spt3g install\n"+"#"+l+"#added by spt3g install\n" + "path['clik']=%s\n"%sys,argv[2]
+        oko=True
+      else:
+        res += l
+  if not oko:
+    res += "#added by spt3g install\n" + "path['clik']=%s\n"%sys,argv[2]
+
+  with open(mtpth+"/default.conf","w") as f:
+    f.write(res)
+
+  passit=""
+  try:
+    import astropy
+    passit="astropy"
+  except Exception:
+    try:
+      import pyfits
+      passit="pyfits"
+    except Exception:
+      pass
+  bew = logtest(passit,"Check for availability of astropy or pyfits",passit,"None",
+          "Install astropy (recommended) or pyfits\nin a location reachable by your PYTHONPATH",fail=False)
+
+  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
+  R=True
+  e=""
+  try:
+    cmd = subprocess.run(shelltest,shell=True,capture_output=True)
+  except Exception as err:
+    R=False
+    e=str(err).decode("utf-8")
+
+print("\n\n")
+if bew:
+  print(colors["BOLD"] + colors["BLUE"] + "Good to go ! Test with "+colors["NORMAL"])
+else:
+  print(colors["BOLD"] + colors["BLUE"] + "You need to install astropy or pyfits (see above) before testing with"+colors["NORMAL"])
+print("      python %s/montepython/MontePython.py run -o base_spt -p base_spt3g_y1.param "%(sys.argv[1])
+print("")
+sys.exit(0)
+
+
+
+
