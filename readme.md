@@ -6,9 +6,9 @@ The package contains instruction for usage in `cobaya` and `montepython`.
 Please use the F90 version from [https://pole.uchicago.edu/public/data/balkenhol22/](https://pole.uchicago.edu/public/data/balkenhol22/) for cosmomc.
 
 **Prerequisite**:
-Download and install `clik` _(version >= 15.0)_ from [https://github.com/benabed/clik](https://github.com/benabed/clik)  or make sure that your cosmo sampler installation already includes a `clik` at version >= 15.2. 
+Download and install `clik` _(version >= 16.0)_ from [https://github.com/benabed/clik](https://github.com/benabed/clik)  or make sure that your cosmo sampler installation already includes a `clik` at version >= 16.0 
 
-_Nota:_ running `clik_print` or `clik_example_C` with a clikfile will display the library version. From version 15.2 running either without clikfile will also display the version and version can also be accessed from python with 
+_Nota:_ running `clik_print` or `clik_example_C` with a clikfile will display the library version. From version 16 running either without clikfile will also display the version and version can also be accessed from python with 
 
 	import clik
 	print clik.version()
