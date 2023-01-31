@@ -109,7 +109,7 @@ logtest(R,"Copy in spt3g metadata cobaya files in "+sys.argv[1]+"/code",yellow=e
 
 instclik = logtest(len(sys.argv)==3,"Use clik from",sys.argv[-1],"default cobaya installation",fail=False)
 if not instclik:
-  logtest(osp.lexists(sys.argv[1]+"/code/planck"),"Check cobaya package contains clik","yes","no","Provide the path to a clik installation (version>=15.0)")
+  logtest(osp.lexists(sys.argv[1]+"/code/planck"),"Check cobaya package contains clik","yes","no","Provide the path to a clik installation (version>=16.0)")
   clikroot=""
   for stp in os.walk(sys.argv[1]+"/code/planck"):
     if "bin" in stp[1]:

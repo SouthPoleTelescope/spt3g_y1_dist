@@ -2,7 +2,7 @@ lkl_type str spt3g_ttteee_2018
 unit int 1
 lmax int 3200
 lmin int 0
-version int 1
+version int 2
 SPT3G_2018_TTTEEE_N_freq_0 int 3
 SPT3G_2018_TTTEEE_N_b_0_TT int 44
 SPT3G_2018_TTTEEE_N_b_0_TE int 44

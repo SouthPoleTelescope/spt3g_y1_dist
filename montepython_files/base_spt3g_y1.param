@@ -1,6 +1,8 @@
 #------Experiments to test (separated with commas)-----
-
-data.experiments=['spt3g_y1', 'Planck_lowl_EE', 'Planck_lowl_TT']
+# To see all the available ones, please look in the
+# montepython/likelihoods folder. Every folder there is a valid likelihood to
+# test.
+data.experiments=['tau_prior','SPT3G_y1']
 
 #------ Settings for the over-sampling.
 # The first element will always be set to 1, for it is the sampling of the
@@ -18,80 +20,90 @@ data.experiments=['spt3g_y1', 'Planck_lowl_EE', 'Planck_lowl_TT']
 # the three Planck likelihoods used, only Planck_highl requires nuisance
 # parameters, therefore over_sampling has a length of two (cosmology, plus one
 # set of nuisance).
-data.over_sampling=[1, 10,4]
+data.over_sampling=[1, 4]
 
 #------ Parameter list -------
-
 # data.parameters[class name] = [mean, min, max, 1-sigma, scale, role]
-# - if min max irrelevant, put to None
+# - if min max irrelevant, put to -1 or None (if you want a boundary of -1, use -1.0)
 # - if fixed, put 1-sigma to 0
 # - if scale irrelevant, put to 1, otherwise to the appropriate factor
-# - role is either 'cosmo', 'nuisance' or 'derived'. You should put the derived
-# parameters at the end, and in case you are using the `-j fast` Cholesky
-# decomposition, you should order your nuisance parameters from slowest to
-# fastest.
+# - role is either 'cosmo', 'nuisance' or 'derived'
 
-# Cosmological parameters list
-
-data.parameters['omega_b']      = [  2.2377,   None, None,      0.015, 0.01, 'cosmo']
-data.parameters['omega_cdm']    = [ 0.12010,   None, None,     0.0013,    1, 'cosmo']
-data.parameters['100*theta_s']  = [ 1.04110,   None, None,    0.00030,    1, 'cosmo']
-data.parameters['ln10^{10}A_s'] = [  3.0447,   None, None,      0.015,    1, 'cosmo']
-data.parameters['n_s']          = [  0.9659,   None, None,     0.0042,    1, 'cosmo']
-data.parameters['tau_reio']     = [  0.0543,  0.004, None,      0.008,    1, 'cosmo']
+# Cosmological parameters list lcdm
+data.parameters['omega_b']      = [0.022068689, None, None, 0.00032,     1, 'cosmo']
+data.parameters['omega_cdm']    = [ 0.11490292, None, None,  0.0038,     1, 'cosmo']
+data.parameters['n_s']          = [ 0.96730769, None, None,   0.016,     1, 'cosmo']
+data.parameters['A_s']            = [ 2.085233,   None, None,   0.051, 1.e-9, 'cosmo']
+# or 'exp_m_2_tau_As'
+data.parameters['h']              = [0.69048678,  None, None,   0.015,     1, 'cosmo']
+data.parameters['tau_reio']       = [0.05122861,  None, None,  0.0074,     1, 'cosmo']
 
 # Nuisance parameter list, same call, except the name does not have to be a class name
+data.parameters['Kappa']                       = [-0.00032697, -0.01, 0.01, 0.0045, 1, 'nuisance']
+data.parameters['TT_Poisson_90x90']            = [   63.03206,    0., 200.,    9.4, 1, 'nuisance']
+data.parameters['TT_Poisson_90x150']           = [  28.494082,    0., 200.,    7.1, 1, 'nuisance']
+data.parameters['TT_Poisson_90x220']           = [   25.65243,    0., 200.,    5.9, 1, 'nuisance']
+data.parameters['TT_Poisson_150x150']          = [  16.782468,    0., 200.,    4.1, 1, 'nuisance']
+data.parameters['TT_Poisson_150x220']          = [  29.065511,    0., 200.,    4.2, 1, 'nuisance']
+data.parameters['TT_Poisson_220x220']          = [  74.893207,    0., 200.,   14.9, 1, 'nuisance']
+data.parameters['TT_CIBClustering_Amp']        = [  4.7368611,    0.,  20.,    1.8, 1, 'nuisance']
+data.parameters['TT_CIBClustering_Beta']       = [  1.9885527,    0.,   5.,   0.38, 1, 'nuisance']
+data.parameters['TT_tSZ_Amp']                  = [  4.5591988,    0.,  20.,    2.4, 1, 'nuisance']
+data.parameters['TT_tSZ_CIB_corr']             = [ 0.14427414,   -1.,   1.,   0.33, 1, 'nuisance']
+data.parameters['TT_kSZ_Amp']                  = [  4.3089612,    0.,  20.,    4.6, 1, 'nuisance']
+data.parameters['TT_GalCirrus_Amp']            = [  2.2068361,    0.,  10.,   0.48, 1, 'nuisance']
+data.parameters['TT_GalCirrus_Alpha']          = [ -2.5309054,   -3.,  -2.,   0.05, 1, 'nuisance']
+data.parameters['TT_GalCirrus_Beta']           = [  1.4812674,    0.,   2.,   0.02, 1, 'nuisance']
+data.parameters['EE_Poisson_90x90']            = [0.038759915,    0.,   5.,  0.012, 1, 'nuisance']
+data.parameters['EE_Poisson_90x150']           = [0.023300076,    0.,   5., 0.0054, 1, 'nuisance']
+data.parameters['EE_Poisson_90x220']           = [0.014657035,    0.,   5., 0.0047, 1, 'nuisance']
+data.parameters['EE_Poisson_150x150']          = [0.013246001,    0.,   5., 0.0034, 1, 'nuisance']
+data.parameters['EE_Poisson_150x220']          = [0.016009267,    0.,   5., 0.0057, 1, 'nuisance']
+data.parameters['EE_Poisson_220x220']          = [0.045012576,    0.,   5.,  0.014, 1, 'nuisance']
+data.parameters['EE_PolGalDust_Amp']           = [0.058025375,    0.,   5.,  0.022, 1, 'nuisance']
+data.parameters['EE_PolGalDust_Alpha']         = [ -2.4548294,   -5.,  -1.,   0.04, 1, 'nuisance']
+data.parameters['EE_PolGalDust_Beta']          = [  1.5019056,   0.5,  2.5,   0.04, 1, 'nuisance']
+data.parameters['TE_PolGalDust_Amp']           = [  0.1136912,    0.,   5.,  0.051, 1, 'nuisance']
+data.parameters['TE_PolGalDust_Alpha']         = [ -2.4113914,   -5.,  -1.,   0.04, 1, 'nuisance']
+data.parameters['TE_PolGalDust_Beta']          = [  1.4822282,   0.5,  2.5,   0.04, 1, 'nuisance']
+data.parameters['Tcal90']                      = [  1.0009856,   0.9,  1.1, 0.0056, 1, 'nuisance']
+data.parameters['Tcal150']                     = [ 0.99793129,   0.9,  1.1, 0.0056, 1, 'nuisance']
+data.parameters['Tcal220']                     = [ 0.99313549,   0.9,  1.1, 0.0075, 1, 'nuisance']
+data.parameters['Ecal90']                      = [  1.0049594,   0.9,  1.1, 0.0087, 1, 'nuisance']
+data.parameters['Ecal150']                     = [  1.0049302,   0.9,  1.1, 0.0082, 1, 'nuisance']
+data.parameters['Ecal220']                     = [   1.022537,   0.9,  1.1,  0.016, 1, 'nuisance']
+data.parameters['TT_CIBClustering_Alpha']      = [        0.8,   0.8,  0.8,      0, 1, 'nuisance']
+data.parameters['TT_CIBClustering_decorr_90']  = [         1.,    1.,   1.,      0, 1, 'nuisance']
+data.parameters['TT_CIBClustering_decorr_150'] = [         1.,    1.,   1.,      0, 1, 'nuisance']
+data.parameters['TT_CIBClustering_decorr_220'] = [         1.,    1.,   1.,      0, 1, 'nuisance']
 
-# spt3g y1 part
-data.parameters['Kappa'] = [0.0,-0.01,0.01,0.00045,1, 'nuisance']
-
-data.parameters['Dl_Poisson_90x90']   =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-data.parameters['Dl_Poisson_90x150']  =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-data.parameters['Dl_Poisson_90x220']  =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-data.parameters['Dl_Poisson_150x150'] =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-data.parameters['Dl_Poisson_150x220'] =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-data.parameters['Dl_Poisson_220x220'] =   [0.1, 0.0, 5.0, 0.01, 1, 'nuisance']
-
-data.parameters['TDust']        = [19.6, 19, 20, 0, 1, 'nuisance']
-data.parameters['ADust_TE_150'] = [0.1647, 0.0, 2.0, 0.01, 1, 'nuisance']
-data.parameters['BetaDust_TE']  = [1.59, 1, 2, 0, 1, 'nuisance']
-data.parameters['AlphaDust_TE'] = [-2.42, -5.0, 0.0, 0.01,  1, 'nuisance']
-data.parameters['ADust_EE_150'] = [0.0236, 0.0, 2.0, 0.01, 1,  'nuisance']
-data.parameters['BetaDust_EE']  = [1.59, 1, 2, 0, 1, 'nuisance']
-data.parameters['AlphaDust_EE'] = [-2.42, -5.0, 0.0, 0.01,  1, 'nuisance']
-
-data.parameters['MapTcal90']  = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-data.parameters['MapTcal150'] = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-data.parameters['MapTcal220'] = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-
-data.parameters['MapPcal90']  = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-data.parameters['MapPcal150'] = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-data.parameters['MapPcal220'] = [1.0, 0.85, 1.15, 0.01, 1, 'nuisance']
-
-# Planck low l part
-data.parameters['A_planck']          = [ 1.00061,   0.9,   1.1,     0.0025,     1, 'nuisance']
-
-# Derived parameters
-
-data.parameters['z_reio']          = [1, None, None, 0,     1,   'derived']
-data.parameters['Omega_Lambda']    = [1, None, None, 0,     1,   'derived']
-data.parameters['YHe']             = [1, None, None, 0,     1,   'derived']
-data.parameters['H0']              = [0, None, None, 0,     1,   'derived']
-data.parameters['A_s']             = [0, None, None, 0,  1e-9,   'derived']
-data.parameters['sigma8']          = [0, None, None, 0,     1,   'derived']
+# Derived parameter list lcdm
+data.parameters['z_reio']         = [0, None, None, 0, 1,  'derived']
+data.parameters['Omega_Lambda']   = [0, None, None, 0, 1,  'derived']
+data.parameters['exp_m_2_tau_As'] = [0, None, None, 0, 1,  'derived']
+data.parameters['ln10^{10}A_s']   = [0, None, None, 0, 1,  'derived']
+data.parameters['100*theta_s']    = [0, None, None, 0, 1,  'derived']
+data.parameters['100*theta_star'] = [0, None, None, 0, 1,  'derived']
+data.parameters['YHe']            = [0, None, None, 0, 1,  'derived']
+data.parameters['sigma8']         = [0, None, None, 0, 1,  'derived']
 
 # Other cosmo parameters (fixed parameters, precision parameters, etc.)
 
-data.cosmo_arguments['sBBN file'] = data.path['cosmo']+'/bbn/sBBN.dat'
-data.cosmo_arguments['k_pivot'] = 0.05
+data.cosmo_arguments['sBBN file'] = data.path['cosmo']+'/external/bbn/sBBN.dat'
+# BBN file path is automatically set to match CLASS version if 'sBBN file' is requested
+# You can force the code to use the exact BBN file passed above with flag
+#data.custom_bbn_file = True
+
+#data.cosmo_arguments['k_pivot'] = 0.05
 
 # The base model features two massless
 # and one massive neutrino with m=0.06eV.
 # The settings below ensures that Neff=3.046
 # and m/omega = 93.14 eV
-data.cosmo_arguments['N_ur'] = 2.0328
+data.cosmo_arguments['N_ur'] = 0.00441
 data.cosmo_arguments['N_ncdm'] = 1
-data.cosmo_arguments['m_ncdm'] = 0.06
+data.cosmo_arguments['deg_ncdm'] = 3
+data.cosmo_arguments['m_ncdm'] = 0.02
 data.cosmo_arguments['T_ncdm'] = 0.71611
 
 # These two are required to get sigma8 as a derived parameter
@@ -99,7 +111,17 @@ data.cosmo_arguments['T_ncdm'] = 0.71611
 data.cosmo_arguments['output'] = 'mPk'
 data.cosmo_arguments['P_k_max_h/Mpc'] = 1.
 
-#------ Mcmc parameters ----
+# The Planck Lensing likelihood is more precise when the non-linear effects are taken
+# into consideration. For this you can use halofit (default) or hmcode.
+# If you are running an exotic model for which the non-linearities cannot be
+# computed with either of these codes, you are advised to comment out the following line.
+data.cosmo_arguments['non linear'] = 'halofit'
 
-data.N=100
+
+
+#------ Mcmc parameters ----
+# Number of steps taken, by default (overwritten by the -N command)
+data.N=10
+# Number of accepted steps before writing to file the chain. Larger means less
+# access to disc, but this is not so much time consuming.
 data.write_step=5

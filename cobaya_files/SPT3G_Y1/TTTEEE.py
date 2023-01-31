@@ -35,7 +35,7 @@ class TTTEEE(planck_clik.PlanckClik):
             raise ComponentNotInstalledError(
                 self.log, (f"Could not find clik: {excpt}. "
                            "To install follow indications at https://github.com/SouthPoleTelescope/spt3g_y1_dist"))
-        if int(clik.version().split("_")[1].split(".")[0])<15:
+        if int(clik.version().split("_")[1].split(".")[0])<16:
             raise planck_clik.VersionCheckError("SPT3G likelihood requires clik v16+. See information here https://github.com/SouthPoleTelescope/spt3g_y1_dist")
         # Loading the likelihood data
         data_path = planck_clik.get_data_path(self.__class__.get_qualified_class_name())
