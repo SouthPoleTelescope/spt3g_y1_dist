@@ -127,18 +127,15 @@ else:
   logtest(osp.lexists(sys.argv[2]),"Check for availibility of clik install",yellow="not found, %s does not exists"%(sys.argv[2]))
   clikroot=sys.argv[2]
 
-logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
-
 if instclik:
   logtest(osp.lexists(sys.argv[1]+"/default.conf"),"Check montepython contains a default.conf file","yes","no","Provide the path to a clik installation (version>=16.0)")
-  clikroot = ""
   mtpth = sys.argv[1]
   res = ""
   oko = False
   with open(mtpth+"/default.conf") as f:
     for l in f:
       if l.strip().startswith("path['clik']") or l.strip().startswith("path[\"clik\"]"):
-        res += "#comented by spt3g install\n"+"#"+l+"#added by spt3g install\n" + "path['clik']=%s\n"%sys,argv[2]
+        res += "#comented by spt3g install\n"+"#"+l+"#added by spt3g install\n" + "path['clik']='%s'\n"%clikroot
         oko=True
       else:
         res += l
@@ -161,7 +158,7 @@ if instclik:
   bew = logtest(passit,"Check for availability of astropy or pyfits",passit,"None",
           "Install astropy (recommended) or pyfits\nin a location reachable by your PYTHONPATH",fail=False)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
+  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,sys.argv[1])
   R=True
   e=""
   try:
@@ -175,7 +172,7 @@ if bew:
   print(colors["BOLD"] + colors["BLUE"] + "Good to go ! Test with "+colors["NORMAL"])
 else:
   print(colors["BOLD"] + colors["BLUE"] + "You need to install astropy or pyfits (see above) before testing with"+colors["NORMAL"])
-print("      python %s/montepython/MontePython.py run -o base_spt -p base_spt3g_y1.param "%(sys.argv[1])
+print("      python %s/montepython/MontePython.py run -o base_spt -p base_spt3g_y1.param "%(sys.argv[1]))
 print("")
 sys.exit(0)
 
