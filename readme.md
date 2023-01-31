@@ -39,6 +39,12 @@ The previous `spt3g_Y1_v3_EETE.clik` file has been removed from this package. Th
 
 
 **Changes**
+*31/01/2023*
+
+- add montepython version and installation script
+- allow for modification of the likelihood from the parameter files in cobaya and montepython
+- tidy up...
+
 *16/12/2022*
 
 - Updated to v1.0 version of TTTEEE
