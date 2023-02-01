@@ -7,7 +7,7 @@
 # Gaussian priors are normalised to one, while in Cobaya they are.
 # This leads leading to a different chi2, but to the same Delta chi2.
 
-spt3g_y1.path_clik = os.path.join('data.path['data']', '/spt_data/spt3g_Y1_v1_TTTEEE.clik')
+spt3g_y1.path_clik = os.path.join(data.path['data']', '/spt_data/spt3g_Y1_v1_TTTEEE.clik')
 spt3g_y1.Kappa_prior_center   = 0.
 spt3g_y1.Kappa_prior_variance = 0.00045
 spt3g_y1.TT_Poisson_90x90_prior_center   = 51.3204
