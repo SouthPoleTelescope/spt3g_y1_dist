@@ -39,7 +39,7 @@ You should now be able to use the spt3g_y1 likelihood. Look at `base_spt3g_y1.pa
 
 ### modifying the SPT3G likelihood
 
-After installation, you can modify the likelihood to use only a subset of th data. Look into `/path/to/montepython/data/spt3g_y1/spt3g_y1.data for examples.
+After installation, you can modify the likelihood to use only a subset of th2 data. Look into `/path/to/montepython/data/spt3g_y1/spt3g_y1.data for examples.
 
 ----------
 31/01/2023

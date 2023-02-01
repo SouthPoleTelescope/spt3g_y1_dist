@@ -21,12 +21,12 @@ You should now be able to use the spt3g_y1_TTTEEE likelihood. Look at `params_SP
 Those steps are performed automatically by the install script.
 
 - Create a `spt_data` directory in `/path/to/cobaya/packages/data`
-- Move the `SPT3G_Y1_v1_TTTEEE.clik` to `/path/to/cobaya/packages/data/spt_data`
+- Move the `spt3g_Y1_v1_TTTEEE.clik` to `/path/to/cobaya/packages/data/spt_data`
 - Copy the `SPT3G_Y1` directory to `/path/to/cobaya/packages/code`
 - If your cobaya installation does not contains a version>=16.0 of `clik`(this is the case if you have installed the cobaya external default cosmology files with a `cobaya-install cosmo -m /path/to/cobaya/packages` for cobaya 3.2.1+), change the name of the directory `path/to/cobaya/packages/code/planck/` to  `path/to/cobaya/packages/code/planck_old/` 
-- Create a link to your `clik` library installation (downloaded from [https://github.com/benabed/clik](https://github.com/benabed/clik)) to `path/to/cobaya/packages/code/planck`.
+- Create a link to your `clik` library installation (downloaded from [https://github.com/benabed/clik](https://github.com/benabed/clik)) to `path/to/cobaya/packages/code/planck/plc-3.1`.
 
-		$> ln -s /path/to/clik path/to/cobaya/packages/code/planck
+		$> ln -s /path/to/clik path/to/cobaya/packages/code/planck/plc-3.1
 	
 - Check whether astropy or pyfits is installed and accessible to cobaya, if not install astropy (`pip3 install astropy`)
 
@@ -35,6 +35,10 @@ Those steps are performed automatically by the install script.
 You should now be able to use the spt3g_y1_TTTEEE likelihood. Look at `params_SPT3GY1_TTTEEE_class_base.yaml` for example use.
 
 	$> cobaya-run params_SPT3GY1_TTTEEE_class_base.yaml
+
+### Modifying the likelihood
+You can modify the likelihood at runtime to ignore some of the cross-spectra and transform the likelihood into a TEEE only case, a TT only, etc...
+To do so, look at the examples in the  `params_SPT3GY1_TTTEEE_class_base.yaml` line 15 and below.
 
 ----------
 30/1/2023
