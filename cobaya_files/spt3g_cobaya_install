@@ -64,10 +64,10 @@ if len(sys.argv) not in [2,3]:
   sys.exit(-1)
 print(colors["BOLD"] + colors["BLUE"] + "Installing spt3g code and data in cobaya\n\n"+colors["NORMAL"])
 
-arg1 = osp.abspath(arg1)
+arg1 = osp.abspath(sys.argv[1])
 arg2 = ""
 if len(argv)==3:
-  arg2 = osp.abspath(arg2)
+  arg2 = osp.abspath(sys.argv[2])
 
 
 # check for cobaya package dir
