@@ -41,7 +41,7 @@ class spt3g_y1(Likelihood_clik):
                     options = self.options
                     self.clik = clik.clik(self.path_clik,**options)
                 else:
-                    self.clik = clik.clik(self.path_clik,**options)
+                    self.clik = clik.clik(self.path_clik)
                 self.l_max = max(self.clik.get_lmax())
         except clik.lkl.CError:
             raise io_mp.LikelihoodError(
