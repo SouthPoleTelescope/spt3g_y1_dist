@@ -125,28 +125,6 @@ else:
   logtest(osp.lexists(arg2),"Check for availibility of clik install",yellow="not found, %s does not exists"%(arg2))
   clikroot=arg2
 
-#shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,arg1)
-#R=True
-#e=""
-#try:
-#  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-#except Exception as err:
-#  R=False
-#  e=str(err).decode("utf-8")
-#
-#logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
-
-shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,arg1)
-R=True
-e=""
-try:
-  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-except Exception as err:
-  R=False
-  e=str(err).decode("utf-8")
-
-logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
-
 if instclik:
   if logtest(osp.lexists(arg1+"/code/planck"),"Check cobaya package contains clik","yes","no",fail=False):
     prevclik=True
@@ -189,24 +167,27 @@ if instclik:
     e=str(err).decode("utf-8")
   logtest(R,"Create symlink ",arg1+"/code/planck/plc-3.1"+" -> "+arg2,yellow=e)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(arg1+"/code/planck",arg1)
-  R=True
-  e=""
-  try:
-    cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-  except Exception as err:
-    R=False
-    e=str(err).decode("utf-8")
+import os
+shell = os.environ.get("SHELL","sh").lower()
+sh = "sh"
+if shell.split("/")[-1] in ("tcsh","csh"): 
+  sh = "csh"
+if shell.split("/")[-1] in ("zsh"): 
+  sh = "zsh"
+shelltest = "source %s/bin/clik_profile.%s;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,sh,arg1)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(arg1+"/code/planck",arg1)
-  R=True
-  e=""
-  try:
-    cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-  except Exception as err:
-    R=False
-    e=str(err).decode("utf-8")
+R=True
+e=""
+try:
+  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
+except Exception as err:
+  R=False
+  e=str(err).decode("utf-8")
 
+logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
+print(shelltest)
+print(cmd.stdout.decode("utf-8"))
+  
 logtest(osp.lexists("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl"),"Check that exmaple param file is available",yellow="Not found",extrayellow="Check your spt3g release. Cannot find params_SPT3GY1_class_base.yaml.tmpl in the cobaya_files directory")
 txt=open("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl").read()
 ntxt = txt.replace("/path/to/cobaya/packages/code/",arg1+"/code")

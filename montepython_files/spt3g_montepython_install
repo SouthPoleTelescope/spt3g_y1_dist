@@ -112,6 +112,14 @@ except Exception as err:
   e=str(err).decode("utf-8")
 logtest(R,"Copy spt3g metadata montepython files in "+arg1+"/montepython/likelihoods/spt3g_y1",yellow=e)
 
+with open("spt3g_y1/spt3g_y1.data") as ffrom:
+  res = ffrom.read()
+
+res = res.replace("MONTEPYTHONDATAPATH",arg1+"/data")
+
+with open(arg1+"/montepython/likelihoods/spt3g_y1/spt3g_y1.data","w") as fto:
+  fto.write(res)
+
 instclik = logtest(len(sys.argv)==3,"Use clik from",sys.argv[-1],"default montepython installation",fail=False)
 if not instclik:
   logtest(osp.lexists(arg1+"/default.conf"),"Check montepython contains a default.conf file","yes","no","Provide the path to a clik installation (version>=16.0)")
@@ -163,14 +171,26 @@ if instclik:
   bew = logtest(passit,"Check for availability of astropy or pyfits",passit,"None",
           "Install astropy (recommended) or pyfits\nin a location reachable by your PYTHONPATH",fail=False)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,arg1)
-  R=True
-  e=""
-  try:
-    cmd = subprocess.run(shelltest,shell=True,capture_output=True)
-  except Exception as err:
-    R=False
-    e=str(err).decode("utf-8")
+import os
+shell = os.environ.get("SHELL","sh").lower()
+sh = "sh"
+if shell.split("/")[-1] in ("tcsh","csh"): 
+  sh = "csh"
+if shell.split("/")[-1] in ("zsh"): 
+  sh = "zsh"
+shelltest = "source %s/bin/clik_profile.%s;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,sh,arg1)
+
+R=True
+e=""
+try:
+  cmd = subprocess.run(shelltest,shell=True,capture_output=True)
+except Exception as err:
+  R=False
+  e=str(err).decode("utf-8")
+
+logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
+print(shelltest)
+print(cmd.stdout.decode("utf-8"))
 
 print("\n\n")
 if bew:
