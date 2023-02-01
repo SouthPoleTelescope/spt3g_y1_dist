@@ -7,89 +7,89 @@
 # Gaussian priors are normalised to one, while in Cobaya they are.
 # This leads leading to a different chi2, but to the same Delta chi2.
 
-SPT3G_y1.path_clik = os.path.join(data.path['clik'], '../spt3g_y1_dist/spt3g_Y1_v1_TTTEEE.clik')
-SPT3G_y1.Kappa_prior_center   = 0.
-SPT3G_y1.Kappa_prior_variance = 0.00045
-SPT3G_y1.TT_Poisson_90x90_prior_center   = 51.3204
-SPT3G_y1.TT_Poisson_90x90_prior_variance = 9.442
-SPT3G_y1.TT_Poisson_90x150_prior_center   = 22.417
-SPT3G_y1.TT_Poisson_90x150_prior_variance = 7.0881
-SPT3G_y1.TT_Poisson_90x220_prior_center   = 20.7004
-SPT3G_y1.TT_Poisson_90x220_prior_variance = 5.9235
-SPT3G_y1.TT_Poisson_150x150_prior_center   = 15.3455
-SPT3G_y1.TT_Poisson_150x150_prior_variance = 4.132
-SPT3G_y1.TT_Poisson_150x220_prior_center   = 28.3573
-SPT3G_y1.TT_Poisson_150x220_prior_variance = 4.1925
-SPT3G_y1.TT_Poisson_220x220_prior_center   = 75.9719
-SPT3G_y1.TT_Poisson_220x220_prior_variance = 14.8626
-SPT3G_y1.TT_CIBClustering_Amp_prior_center   = 3.2263
-SPT3G_y1.TT_CIBClustering_Amp_prior_variance = 1.8354
-SPT3G_y1.TT_CIBClustering_Beta_prior_center   = 2.2642
-SPT3G_y1.TT_CIBClustering_Beta_prior_variance = 0.3814
-SPT3G_y1.TT_tSZ_Amp_prior_center   = 3.2279
-SPT3G_y1.TT_tSZ_Amp_prior_variance = 2.3764
-SPT3G_y1.TT_tSZ_CIB_corr_prior_center   = 0.1801
-SPT3G_y1.TT_tSZ_CIB_corr_prior_variance = 0.3342
-SPT3G_y1.TT_kSZ_Amp_prior_center   = 3.7287
-SPT3G_y1.TT_kSZ_Amp_prior_variance = 4.644
-SPT3G_y1.TT_GalCirrus_Amp_prior_center   = 1.88
-SPT3G_y1.TT_GalCirrus_Amp_prior_variance = 0.48
-SPT3G_y1.TT_GalCirrus_Alpha_prior_center   = -2.53
-SPT3G_y1.TT_GalCirrus_Alpha_prior_variance = 0.05
-SPT3G_y1.TT_GalCirrus_Beta_prior_center   = 1.48
-SPT3G_y1.TT_GalCirrus_Beta_prior_variance = 0.02
-SPT3G_y1.EE_Poisson_90x90_prior_center   = 0.040469
-SPT3G_y1.EE_Poisson_90x90_prior_variance = 0.012141
-SPT3G_y1.EE_Poisson_90x150_prior_center   = 0.018048
-SPT3G_y1.EE_Poisson_90x150_prior_variance = 0.005414
-SPT3G_y1.EE_Poisson_90x220_prior_center   = 0.015719
-SPT3G_y1.EE_Poisson_90x220_prior_variance = 0.004716
-SPT3G_y1.EE_Poisson_150x150_prior_center   = 0.011495
-SPT3G_y1.EE_Poisson_150x150_prior_variance = 0.003448
-SPT3G_y1.EE_Poisson_150x220_prior_center   = 0.018962
-SPT3G_y1.EE_Poisson_150x220_prior_variance = 0.005689
-SPT3G_y1.EE_Poisson_220x220_prior_center   = 0.047557
-SPT3G_y1.EE_Poisson_220x220_prior_variance = 0.014267
-SPT3G_y1.EE_PolGalDust_Amp_prior_center   = 0.05
-SPT3G_y1.EE_PolGalDust_Amp_prior_variance = 0.022
-SPT3G_y1.EE_PolGalDust_Alpha_prior_center   = -2.42
-SPT3G_y1.EE_PolGalDust_Alpha_prior_variance = 0.04
-SPT3G_y1.EE_PolGalDust_Beta_prior_center   = 1.51
-SPT3G_y1.EE_PolGalDust_Beta_prior_variance = 0.04
-SPT3G_y1.TE_PolGalDust_Amp_prior_center   = 0.120
-SPT3G_y1.TE_PolGalDust_Amp_prior_variance = 0.051
-SPT3G_y1.TE_PolGalDust_Alpha_prior_center   = -2.42
-SPT3G_y1.TE_PolGalDust_Alpha_prior_variance = 0.04
-SPT3G_y1.TE_PolGalDust_Beta_prior_center   = 1.51
-SPT3G_y1.TE_PolGalDust_Beta_prior_variance = 0.04
+spt3g_y1.path_clik = os.path.join(root, 'data/spt_3g/spt3g_Y1_v1_TTTEEE.clik')
+spt3g_y1.Kappa_prior_center   = 0.
+spt3g_y1.Kappa_prior_variance = 0.00045
+spt3g_y1.TT_Poisson_90x90_prior_center   = 51.3204
+spt3g_y1.TT_Poisson_90x90_prior_variance = 9.442
+spt3g_y1.TT_Poisson_90x150_prior_center   = 22.417
+spt3g_y1.TT_Poisson_90x150_prior_variance = 7.0881
+spt3g_y1.TT_Poisson_90x220_prior_center   = 20.7004
+spt3g_y1.TT_Poisson_90x220_prior_variance = 5.9235
+spt3g_y1.TT_Poisson_150x150_prior_center   = 15.3455
+spt3g_y1.TT_Poisson_150x150_prior_variance = 4.132
+spt3g_y1.TT_Poisson_150x220_prior_center   = 28.3573
+spt3g_y1.TT_Poisson_150x220_prior_variance = 4.1925
+spt3g_y1.TT_Poisson_220x220_prior_center   = 75.9719
+spt3g_y1.TT_Poisson_220x220_prior_variance = 14.8626
+spt3g_y1.TT_CIBClustering_Amp_prior_center   = 3.2263
+spt3g_y1.TT_CIBClustering_Amp_prior_variance = 1.8354
+spt3g_y1.TT_CIBClustering_Beta_prior_center   = 2.2642
+spt3g_y1.TT_CIBClustering_Beta_prior_variance = 0.3814
+spt3g_y1.TT_tSZ_Amp_prior_center   = 3.2279
+spt3g_y1.TT_tSZ_Amp_prior_variance = 2.3764
+spt3g_y1.TT_tSZ_CIB_corr_prior_center   = 0.1801
+spt3g_y1.TT_tSZ_CIB_corr_prior_variance = 0.3342
+spt3g_y1.TT_kSZ_Amp_prior_center   = 3.7287
+spt3g_y1.TT_kSZ_Amp_prior_variance = 4.644
+spt3g_y1.TT_GalCirrus_Amp_prior_center   = 1.88
+spt3g_y1.TT_GalCirrus_Amp_prior_variance = 0.48
+spt3g_y1.TT_GalCirrus_Alpha_prior_center   = -2.53
+spt3g_y1.TT_GalCirrus_Alpha_prior_variance = 0.05
+spt3g_y1.TT_GalCirrus_Beta_prior_center   = 1.48
+spt3g_y1.TT_GalCirrus_Beta_prior_variance = 0.02
+spt3g_y1.EE_Poisson_90x90_prior_center   = 0.040469
+spt3g_y1.EE_Poisson_90x90_prior_variance = 0.012141
+spt3g_y1.EE_Poisson_90x150_prior_center   = 0.018048
+spt3g_y1.EE_Poisson_90x150_prior_variance = 0.005414
+spt3g_y1.EE_Poisson_90x220_prior_center   = 0.015719
+spt3g_y1.EE_Poisson_90x220_prior_variance = 0.004716
+spt3g_y1.EE_Poisson_150x150_prior_center   = 0.011495
+spt3g_y1.EE_Poisson_150x150_prior_variance = 0.003448
+spt3g_y1.EE_Poisson_150x220_prior_center   = 0.018962
+spt3g_y1.EE_Poisson_150x220_prior_variance = 0.005689
+spt3g_y1.EE_Poisson_220x220_prior_center   = 0.047557
+spt3g_y1.EE_Poisson_220x220_prior_variance = 0.014267
+spt3g_y1.EE_PolGalDust_Amp_prior_center   = 0.05
+spt3g_y1.EE_PolGalDust_Amp_prior_variance = 0.022
+spt3g_y1.EE_PolGalDust_Alpha_prior_center   = -2.42
+spt3g_y1.EE_PolGalDust_Alpha_prior_variance = 0.04
+spt3g_y1.EE_PolGalDust_Beta_prior_center   = 1.51
+spt3g_y1.EE_PolGalDust_Beta_prior_variance = 0.04
+spt3g_y1.TE_PolGalDust_Amp_prior_center   = 0.120
+spt3g_y1.TE_PolGalDust_Amp_prior_variance = 0.051
+spt3g_y1.TE_PolGalDust_Alpha_prior_center   = -2.42
+spt3g_y1.TE_PolGalDust_Alpha_prior_variance = 0.04
+spt3g_y1.TE_PolGalDust_Beta_prior_center   = 1.51
+spt3g_y1.TE_PolGalDust_Beta_prior_variance = 0.04
 
 # The calibration priors are included in the clik likelihood
 # and should not be double-counted here. Thus the following
 # lines should remain commented.
-#SPT3G_y1.Tcal90_prior_center   = 1.
-#SPT3G_y1.Tcal90_prior_variance = 0.0056
-#SPT3G_y1.Tcal150_prior_center   = 1.
-#SPT3G_y1.Tcal150_prior_variance = 0.0056
-#SPT3G_y1.Tcal220_prior_center   = 1.
-#SPT3G_y1.Tcal220_prior_variance = 0.0075
-#SPT3G_y1.Ecal90_prior_center   = 1.
-#SPT3G_y1.Ecal90_prior_variance = 0.0087
-#SPT3G_y1.Ecal150_prior_center   = 1.
-#SPT3G_y1.Ecal150_prior_variance = 0.0082
-#SPT3G_y1.Ecal220_prior_center   = 1.
-#SPT3G_y1.Ecal220_prior_variance = 0.016
+#spt3g_y1.Tcal90_prior_center   = 1.
+#spt3g_y1.Tcal90_prior_variance = 0.0056
+#spt3g_y1.Tcal150_prior_center   = 1.
+#spt3g_y1.Tcal150_prior_variance = 0.0056
+#spt3g_y1.Tcal220_prior_center   = 1.
+#spt3g_y1.Tcal220_prior_variance = 0.0075
+#spt3g_y1.Ecal90_prior_center   = 1.
+#spt3g_y1.Ecal90_prior_variance = 0.0087
+#spt3g_y1.Ecal150_prior_center   = 1.
+#spt3g_y1.Ecal150_prior_variance = 0.0082
+#spt3g_y1.Ecal220_prior_center   = 1.
+#spt3g_y1.Ecal220_prior_variance = 0.016
 
 # the uncomment the following line if you want to modify the likelihood
 
 # TT only
-# SPT3G_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "44 1 1 44 1 1 44 1 1 44 1 1 44 1 1 44 1 1"}
+# spt3g_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "44 1 1 44 1 1 44 1 1 44 1 1 44 1 1 44 1 1"}
 
 # TE only
-# SPT3G_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 44 1 10 44 1 10 44 1 10 44 1 15 44 1 15 44 1"}
+# spt3g_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 44 1 10 44 1 10 44 1 10 44 1 15 44 1 15 44 1"}
 
 # EE only
-# SPT3G_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 1 44 10 1 44 10 1 44 10 1 44 15 1 44 15 1 44"}
+# spt3g_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 1 44 10 1 44 10 1 44 10 1 44 15 1 44 15 1 44"}
 
 # TEEE only
-# SPT3G_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 44 44 10 44 44 10 44 44 10 44 44 15 44 44 15 44 44"}
+# spt3g_y1.options = {"SPT3G_2018_TTTEEE_spectra_to_fit_bin_max" : "10 44 44 10 44 44 10 44 44 10 44 44 15 44 44 15 44 44"}
 

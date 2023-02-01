@@ -2,7 +2,7 @@
 # To see all the available ones, please look in the
 # montepython/likelihoods folder. Every folder there is a valid likelihood to
 # test.
-data.experiments=['SPT3G_y1']
+data.experiments=['spt3g_y1']
 
 #------ Settings for the over-sampling.
 # The first element will always be set to 1, for it is the sampling of the
