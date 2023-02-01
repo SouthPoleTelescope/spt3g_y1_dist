@@ -11,7 +11,7 @@ Download and install `clik` _(version >= 16.0)_ from [https://github.com/benabed
 _Nota:_ running `clik_print` or `clik_example_C` with a clikfile will display the library version. From version 16 running either without clikfile will also display the version and version can also be accessed from python with 
 
 	import clik
-	print clik.version()
+	print(clik.version())
 
 
 **Production notes**

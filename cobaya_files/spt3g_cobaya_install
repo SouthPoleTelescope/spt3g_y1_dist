@@ -202,20 +202,6 @@ if instclik:
     R=False
     e=str(err).decode("utf-8")
 
-logtest(osp.lexists("params_SPT3GY1_class_base.yaml.tmpl"),"Check that exmaple param file is available",yellow="Not found",extrayellow="Check your spt3g release. Cannot find params_SPT3GY1_class_base.yaml.tmpl in the cobaya_files directory")
-txt=open("params_SPT3GY1_class_base.yaml.tmpl").read()
-ntxt = txt.replace("/path/to/cobaya/packages/code/",sys.argv[1]+"/code")
-R = True
-e = ""
-try:
-  f = open("params_SPT3GY1_class_base.yaml","w")
-  print(ntxt,file=f)
-  f.close()
-except Exception as err:
-  R = False
-  e=str(err).decode("utf-8")
-logtest(R,"Create exmaple parameter file params_SPT3GY1_class_base.yaml",sys.argv[1]+"/code/planck"+" -> "+sys.argv[2],yellow=e)
-
 logtest(osp.lexists("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl"),"Check that exmaple param file is available",yellow="Not found",extrayellow="Check your spt3g release. Cannot find params_SPT3GY1_class_base.yaml.tmpl in the cobaya_files directory")
 txt=open("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl").read()
 ntxt = txt.replace("/path/to/cobaya/packages/code/",sys.argv[1]+"/code")
