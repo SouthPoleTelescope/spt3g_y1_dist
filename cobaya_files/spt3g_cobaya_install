@@ -36,14 +36,14 @@ def trymkdir(drpath):
 def install_clikfile(clikfile):
   logtest(osp.lexists("../"+clikfile),"Check for availibility of the data file",yellow="Not found",extrayellow="Check your spt3g release. Cannot find %s in the root directory"%clikfile)
 
-  if osp.lexists(sys.argv[1]+"/data/spt_data/"+clikfile):
+  if osp.lexists(arg1+"/data/spt_data/"+clikfile):
     R = True
     e = ""
     try:
-      if not osp.islink(sys.argv[1]+"/data/spt_data/"+clikfile):
-        shutil.rmtree(sys.argv[1]+"/data/spt_data/"+clikfile)
+      if not osp.islink(arg1+"/data/spt_data/"+clikfile):
+        shutil.rmtree(arg1+"/data/spt_data/"+clikfile)
       else:
-        os.unlink(sys.argv[1]+"/data/spt_data/"+clikfile)
+        os.unlink(arg1+"/data/spt_data/"+clikfile)
     except Exception as err:
       R = False
       e=str(err).decode("utf-8")
@@ -52,47 +52,52 @@ def install_clikfile(clikfile):
   R = True
   e = ""
   try:
-    shutil.copytree("../"+clikfile,sys.argv[1]+"/data/spt_data/"+clikfile)
+    shutil.copytree("../"+clikfile,arg1+"/data/spt_data/"+clikfile)
   except Exception as err:
     R = False
     e=str(err).decode("utf-8")
-  logtest(R,"Copy "+clikfile+" in "+sys.argv[1]+"/data/spt_data/",yellow=e)
+  logtest(R,"Copy "+clikfile+" in "+arg1+"/data/spt_data/",yellow=e)
   
   
-  if len(sys.argv) not in [2,3]:
-    print ("usage: %s /path/to/cobaya/packages [/path/to/clik]")
-    sys.exit(-1)
-  print(colors["BOLD"] + colors["BLUE"] + "Installing spt3g code and data in cobaya\n\n"+colors["NORMAL"])
+if len(sys.argv) not in [2,3]:
+  print ("usage: %s /path/to/cobaya/packages [/path/to/clik]")
+  sys.exit(-1)
+print(colors["BOLD"] + colors["BLUE"] + "Installing spt3g code and data in cobaya\n\n"+colors["NORMAL"])
+
+arg1 = osp.abspath(arg1)
+arg2 = ""
+if len(argv)==3:
+  arg2 = osp.abspath(arg2)
 
 
 # check for cobaya package dir
-logtest(osp.isdir(sys.argv[1]),"Check cobaya package path",sys.argv[1],sys.argv[1]+" does not exists")
-if not logtest(osp.isdir(sys.argv[1]+"/data"),"Check cobaya package path contains data","ok","data not found, create it", fail=False):
-  trymkdir(sys.argv[1]+"/data")
+logtest(osp.isdir(arg1),"Check cobaya package path",arg1,arg1+" does not exists")
+if not logtest(osp.isdir(arg1+"/data"),"Check cobaya package path contains data","ok","data not found, create it", fail=False):
+  trymkdir(arg1+"/data")
 
-if (osp.lexists(sys.argv[1]+"/data/spt_data")) and (osp.isdir(sys.argv[1]+"/data/spt_data")):
-  logtest(True,sys.argv[1]+"/data/spt_data", "already exists")
-elif  (osp.lexists(sys.argv[1]+"/data/spt_data")) and (osp.isfile(sys.argv[1]+"/data/spt_data")):
-  logtest(False,sys.argv[1]+"/data/spt_data", "is a file","Check your cobaya package directory and manually remove %s"%(sys.argv[1]+"/data/spt_data"))
+if (osp.lexists(arg1+"/data/spt_data")) and (osp.isdir(arg1+"/data/spt_data")):
+  logtest(True,arg1+"/data/spt_data", "already exists")
+elif  (osp.lexists(arg1+"/data/spt_data")) and (osp.isfile(arg1+"/data/spt_data")):
+  logtest(False,arg1+"/data/spt_data", "is a file","Check your cobaya package directory and manually remove %s"%(arg1+"/data/spt_data"))
 else:
-  trymkdir(sys.argv[1]+"/data/spt_data")
+  trymkdir(arg1+"/data/spt_data")
 
 #install_clikfile("spt3g_Y1_v3_EETE.clik")
 install_clikfile("spt3g_Y1_v1_TTTEEE.clik")
 
-if not logtest(osp.isdir(sys.argv[1]+"/data"),"Check cobaya package path contains code","ok","code not found, create it", fail=False):
-  trymkdir(sys.argv[1]+"/code")
+if not logtest(osp.isdir(arg1+"/data"),"Check cobaya package path contains code","ok","code not found, create it", fail=False):
+  trymkdir(arg1+"/code")
 
 logtest(osp.lexists("SPT3G_Y1"),"Check for availibility of the cobaya metadata files",yellow="Not found",extrayellow="Check your spt3g release. Cannot find SPT3G_Y1 directory in the cobaya_files directory")
 
-if osp.lexists(sys.argv[1]+"/code/SPT3G_Y1"):
+if osp.lexists(arg1+"/code/SPT3G_Y1"):
   R = True
   e = ""
   try:
-    if not osp.islink(sys.argv[1]+"/code/SPT3G_Y1"):
-      shutil.rmtree(sys.argv[1]+"/code/SPT3G_Y1")
+    if not osp.islink(arg1+"/code/SPT3G_Y1"):
+      shutil.rmtree(arg1+"/code/SPT3G_Y1")
     else:
-      os.unlink(sys.argv[1]+"/code/SPT3G_Y1")
+      os.unlink(arg1+"/code/SPT3G_Y1")
   except Exception as err:
     R = False
     e=str(err).decode("utf-8")
@@ -101,26 +106,26 @@ if osp.lexists(sys.argv[1]+"/code/SPT3G_Y1"):
 R = True
 e = ""
 try:
-  shutil.copytree("SPT3G_Y1",sys.argv[1]+"/code/SPT3G_Y1")
+  shutil.copytree("SPT3G_Y1",arg1+"/code/SPT3G_Y1")
 except Exception as err:
   R = False
   e=str(err).decode("utf-8")
-logtest(R,"Copy in spt3g metadata cobaya files in "+sys.argv[1]+"/code",yellow=e)
+logtest(R,"Copy in spt3g metadata cobaya files in "+arg1+"/code",yellow=e)
 
 instclik = logtest(len(sys.argv)==3,"Use clik from",sys.argv[-1],"default cobaya installation",fail=False)
 if not instclik:
-  logtest(osp.lexists(sys.argv[1]+"/code/planck"),"Check cobaya package contains clik","yes","no","Provide the path to a clik installation (version>=16.0)")
+  logtest(osp.lexists(arg1+"/code/planck"),"Check cobaya package contains clik","yes","no","Provide the path to a clik installation (version>=16.0)")
   clikroot=""
-  for stp in os.walk(sys.argv[1]+"/code/planck"):
+  for stp in os.walk(arg1+"/code/planck"):
     if "bin" in stp[1]:
       clikroot = stp[0]
       break
-  logtest(clikroot,sys.argv[1]+"/code/planck"+" contains a valid clik installation")
+  logtest(clikroot,arg1+"/code/planck"+" contains a valid clik installation")
 else:
-  logtest(osp.lexists(sys.argv[2]),"Check for availibility of clik install",yellow="not found, %s does not exists"%(sys.argv[2]))
-  clikroot=sys.argv[2]
+  logtest(osp.lexists(arg2),"Check for availibility of clik install",yellow="not found, %s does not exists"%(arg2))
+  clikroot=arg2
 
-#shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,sys.argv[1])
+#shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(clikroot,arg1)
 #R=True
 #e=""
 #try:
@@ -131,7 +136,7 @@ else:
 #
 #logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
 
-shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,sys.argv[1])
+shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(clikroot,arg1)
 R=True
 e=""
 try:
@@ -143,9 +148,9 @@ except Exception as err:
 logtest(cmd.returncode==0 and R,"Check that the clik package can run the spt3g likelihood",extrayellow="%s\n returned %d\n%s"%(shelltest,cmd.returncode,cmd.stderr.decode("utf-8")))
 
 if instclik:
-  if logtest(osp.lexists(sys.argv[1]+"/code/planck"),"Check cobaya package contains clik","yes","no",fail=False):
+  if logtest(osp.lexists(arg1+"/code/planck"),"Check cobaya package contains clik","yes","no",fail=False):
     prevclik=True
-    renam = sys.argv[1]+"/code/planck_old"
+    renam = arg1+"/code/planck_old"
     i=0
     ext = ""
     while osp.lexists(renam+ext):
@@ -155,7 +160,7 @@ if instclik:
     R = True
     e = ""
     try:
-      os.rename(sys.argv[1]+"/code/planck",renam+ext)
+      os.rename(arg1+"/code/planck",renam+ext)
     except Exception as err:
       R = False
       e=str(err).decode("utf-8")
@@ -177,14 +182,14 @@ if instclik:
   R = True
   e = ""
   try:
-    os.mkdir(sys.argv[1]+"/code/planck")
-    os.symlink(sys.argv[2],sys.argv[1]+"/code/planck/plc-3.1")
+    os.mkdir(arg1+"/code/planck")
+    os.symlink(arg2,arg1+"/code/planck/plc-3.1")
   except Exception as err:
     R = False
     e=str(err).decode("utf-8")
-  logtest(R,"Create symlink ",sys.argv[1]+"/code/planck/plc-3.1"+" -> "+sys.argv[2],yellow=e)
+  logtest(R,"Create symlink ",arg1+"/code/planck/plc-3.1"+" -> "+arg2,yellow=e)
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
+  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v3_EETE.clik"%(arg1+"/code/planck",arg1)
   R=True
   e=""
   try:
@@ -193,7 +198,7 @@ if instclik:
     R=False
     e=str(err).decode("utf-8")
 
-  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(sys.argv[1]+"/code/planck",sys.argv[1])
+  shelltest = "source %s/bin/clik_profile.sh;clik_print %s/data/spt_data/spt3g_Y1_v1_TTTEEE.clik"%(arg1+"/code/planck",arg1)
   R=True
   e=""
   try:
@@ -204,7 +209,7 @@ if instclik:
 
 logtest(osp.lexists("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl"),"Check that exmaple param file is available",yellow="Not found",extrayellow="Check your spt3g release. Cannot find params_SPT3GY1_class_base.yaml.tmpl in the cobaya_files directory")
 txt=open("params_SPT3GY1_TTTEEE_class_base.yaml.tmpl").read()
-ntxt = txt.replace("/path/to/cobaya/packages/code/",sys.argv[1]+"/code")
+ntxt = txt.replace("/path/to/cobaya/packages/code/",arg1+"/code")
 R = True
 e = ""
 try:
@@ -214,14 +219,14 @@ try:
 except Exception as err:
   R = False
   e=str(err).decode("utf-8")
-logtest(R,"Create exmaple parameter file params_SPT3GY1_TTTEEE_class_base.yaml",sys.argv[1]+"/code/planck"+" -> "+sys.argv[2],yellow=e)
+logtest(R,"Create exmaple parameter file params_SPT3GY1_TTTEEE_class_base.yaml",arg1+"/code/planck"+" -> "+arg2,yellow=e)
 
 print("\n\n")
 if bew:
   print(colors["BOLD"] + colors["BLUE"] + "Good to go ! Test with "+colors["NORMAL"])
 else:
   print(colors["BOLD"] + colors["BLUE"] + "You need to install astropy or pyfits (see above) before testing with"+colors["NORMAL"])
-print("      COBAYA_PACKAGES_PATH=%s cobaya-run %s/params_SPT3GY1_TTTEEE_class_base.yaml"%(sys.argv[1],os.getcwd()))
+print("      COBAYA_PACKAGES_PATH=%s cobaya-run %s/params_SPT3GY1_TTTEEE_class_base.yaml"%(arg1,os.getcwd()))
 print("")
 sys.exit(0)
 
