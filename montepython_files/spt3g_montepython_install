@@ -197,6 +197,7 @@ if bew:
   print(colors["BOLD"] + colors["BLUE"] + "Good to go ! Test with "+colors["NORMAL"])
 else:
   print(colors["BOLD"] + colors["BLUE"] + "You need to install astropy or pyfits (see above) before testing with"+colors["NORMAL"])
+print("      source %s/bin/clik_profile.%s"%(clikroot,sh,))
 print("      python %s/montepython/MontePython.py run -o base_spt -p base_spt3g_y1.param "%(arg1))
 print("")
 sys.exit(0)
