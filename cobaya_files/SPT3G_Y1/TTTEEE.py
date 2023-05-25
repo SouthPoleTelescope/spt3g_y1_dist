@@ -17,7 +17,8 @@ class TTTEEE(planck_clik.PlanckClik):
     SPT3G_2018_TTTEEE_kSZ_cosmology_scaling  : Optional[str]
     SPT3G_2018_TTTEEE_spectra_to_fit_bin_min  : Optional[str]
     SPT3G_2018_TTTEEE_spectra_to_fit_bin_max  : Optional[str]
-
+    SPT3G_2018_TTTEEE_spectra_to_fit : Optional[str]
+    
     def initialize(self):
         try:
             install_path = (
