@@ -41,6 +41,10 @@ The previous `spt3g_Y1_v3_EETE.clik` file has been removed from this package. Th
 Note that when changing the initialization parameters, the automatic test run at initialization of the likelihood will fail.
 
 **Changes**
+*25/05/2023*
+
+ - previous recipes to restrict likelihood to TT only (resp TE, EE) were still using a single bins of TEEE (resp. TTEE, TTTE). This has been corrected. That requires modification to the parameter files that are described in the cobaya and montepython readmes.
+ 
 *31/01/2023*
 
 - add montepython version and installation script
