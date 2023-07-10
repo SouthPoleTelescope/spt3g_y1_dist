@@ -25,3 +25,4 @@ SPT3G_2018_TTTEEE_CIB_nu0 float 150
 SPT3G_2018_TTTEEE_tSZ_nu0 float 143
 SPT3G_2018_TTTEEE_tSZ_cosmology_scaling int 0
 SPT3G_2018_TTTEEE_kSZ_cosmology_scaling int 0
+SPT3G_2018_TTTEEE_include_logdet int 1

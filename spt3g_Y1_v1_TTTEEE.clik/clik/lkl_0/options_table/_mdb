@@ -1,4 +1,4 @@
-noptions int 9
+noptions int 10
 option_0 str SPT3G_2018_TTTEEE_late_crop_msk
 option_1 str SPT3G_2018_TTTEEE_beam_covariance_scale
 option_2 str SPT3G_2018_TTTEEE_galdust_T
@@ -8,3 +8,4 @@ option_5 str SPT3G_2018_TTTEEE_kSZ_cosmology_scaling
 option_6 str SPT3G_2018_TTTEEE_spectra_to_fit_bin_min
 option_7 str SPT3G_2018_TTTEEE_spectra_to_fit_bin_max
 option_8 str SPT3G_2018_TTTEEE_spectra_to_fit
+option_9 str SPT3G_2018_TTTEEE_include_logdet
